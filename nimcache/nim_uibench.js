@@ -538,6 +538,23 @@ unhandledException(e_40206);
 throw e_40206;}
 var toTag_76449 = nimCopy(null, ["#text", "#int", "#bool", "#vthunk", "#dthunk", "HTML", "HEAD", "TITLE", "BASE", "LINK", "META", "STYLE", "SCRIPT", "NOSCRIPT", "BODY", "SECTION", "NAV", "ARTICLE", "ASIDE", "H1", "H2", "H3", "H4", "H5", "H6", "HEADER", "FOOTER", "ADDRESS", "MAIN", "P", "HR", "PRE", "BLOCKQUOTE", "OL", "UL", "LI", "DL", "DT", "DD", "FIGURE", "FIGCAPTION", "DIV", "A", "EM", "STRONG", "SMALL", "S", "CITE", "QUOTE", "DFN", "ABBR", "DATA", "TIME", "CODE", "VAR", "SAMP", "KDB", "SUB", "SUP", "I", "B", "U", "MARK", "RUBY", "RT", "RP", "BDI", "DBO", "SPAN", "BR", "WBR", "INS", "DEL", "IMG", "IFRAME", "EMBED", "OBJECT", "PARAM", "VIDEO", "AUDIO", "SOURCE", "TRACK", "CANVAS", "MAP", "AREA", "SVG", "MATH", "TABLE", "CAPTION", "COLGROUP", "COL", "TBODY", "THEAD", "TFOOT", "TR", "TD", "TH", "FORM", "FIELDSET", "LEGEND", "LABEL", "INPUT", "BUTTON", "SELECT", "DATALIST", "OPTGROUP", "OPTION", "TEXTAREA", "KEYGEN", "OUTPUT", "PROGRESS", "METER", "DETAILS", "SUMMARY", "COMMAND", "MENU"], NTI76452);
 var toEventName_76455 = nimCopy(null, ["click", "dblclick", "keyup", "keydown", "keypressed", "blur", "change", "scroll", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseout", "mouseover", "mouseup", "drag", "dragend", "dragenter", "dragleave", "dragover", "dragstart", "drop", "keyupenter", "keyuplater"], NTI76458);
+function nimMax(a_45644, b_45645) {
+
+var Tmp1;
+var result_45646 = 0;
+BeforeRet: do {
+if ((b_45645 <= a_45644)) {
+Tmp1 = a_45644;
+}
+else {
+Tmp1 = b_45645;
+}
+
+result_45646 = Tmp1;
+break BeforeRet;
+} while (false); 
+return result_45646;
+}
 function nimMin(a_45639, b_45640) {
 
 var Tmp1;
@@ -964,6 +981,12 @@ var result_90697 = {data: null, rd: 0, wr: 0, count: 0, mask: 0};
 result_90697.mask = (initialSize_90681 - 1);
 result_90697.data = new Array(initialSize_90681); for (var i=0;i<initialSize_90681;++i) {result_90697.data[i]={parent: null, current: null, newNode: null, oldNode: null};}return result_90697;
 }
+function len_76821(x_76823) {
+
+var result_76824 = 0;
+result_76824 = (x_76823.kids != null ? x_76823.kids.length : 0);
+return result_76824;
+}
 function newSeq_91402(len_91406) {
 
 var result_91408 = null;
@@ -1029,12 +1052,6 @@ var v_91816 = {parent: null, current: null, newNode: null, oldNode: null};
 nimCopy(q_91609.data[q_91609.rd], v_91816, NTI90664);
 q_91609.rd = ((q_91609.rd + 1) & q_91609.mask);
 return result_91610;
-}
-function len_76821(x_76823) {
-
-var result_76824 = 0;
-result_76824 = (x_76823.kids != null ? x_76823.kids.length : 0);
-return result_76824;
 }
 function X5BX5D__76832(x_76834, idx_76835) {
 
@@ -1242,7 +1259,7 @@ startState_90675.parent = startParent_90671;
 startState_90675.current = startCurrent_90672;
 startState_90675.newNode = startNewNode_90673;
 startState_90675.oldNode = startOldNode_90674;
-var q_90811 = /**/[initQueue_90677(4)];
+var q_90811 = /**/[initQueue_90677(nimMax(len_76821(startNewNode_90673), len_76821(startOldNode_90674)))];
 add_90813(q_90811[0], startState_90675);
 L1: do {
 L2: while (true) {
