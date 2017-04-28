@@ -453,7 +453,7 @@ var toFocusV_89022 = [null];
 var dorender_89480 = [null];
 var currentTree_89481 = [null];
 var appState_94089 = [null];
-uibench.init("Nim-karax", "0.6.1");
+uibench.init("Nim-karax-optimized", "0.6.1");
 function setRendererOnly_90411(renderer_90415) {
 
 var F={procname:"karax.setRendererOnly",prev:framePtr,filename:"/Users/romchela/Xored/pragmagic/src/karax.nim",line:0};
@@ -1202,13 +1202,12 @@ L1: do {
 F.line = 194;
 L2: while (true) {
 if (!(left_90001 <= nimMin(rightNew_90002, rightOld_90003))) break L2;
-console.log(toJSStr((cstrToNimstr((left_90001)+"").slice(0,-1)).concat(cstrToNimstr((rightOld_90003)+"").slice(0,-1),cstrToNimstr((rightNew_90002)+""))));
 F.line = 196;
-var minRight_90010 = nimMin(rightOld_90003, rightNew_90002);
+var minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
 L3: do {
 F.line = 198;
 L4: while (true) {
-if (!((left_90001 <= minRight_90010) && equalsTree_89545(X5BX5D__76832(newNode_89667, left_90001), X5BX5D__76832(oldNode_89668, left_90001)))) break L4;
+if (!((left_90001 <= minRight_90004) && equalsTree_89545(X5BX5D__76832(newNode_89667, left_90001), X5BX5D__76832(oldNode_89668, left_90001)))) break L4;
 left_90001 = addInt(left_90001, 1);
 }
 } while(false);
@@ -1221,13 +1220,13 @@ rightNew_90002 = subInt(rightNew_90002, 1);
 }
 } while(false);
 F.line = 207;
-minRight_90010 = nimMin(rightOld_90003, rightNew_90002);
-if ((left_90001 <= minRight_90010)) {
+minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
+if ((left_90001 <= minRight_90004)) {
 updateElement_89663(current_89666, current_89666.childNodes[chckIndx(left_90001, 0, current_89666.childNodes.length)-0], X5BX5D__76832(newNode_89667, left_90001), X5BX5D__76832(oldNode_89668, left_90001));
 left_90001 = addInt(left_90001, 1);
 }
 
-if ((left_90001 < minRight_90010)) {
+if ((left_90001 < minRight_90004)) {
 updateElement_89663(current_89666, current_89666.childNodes[chckIndx(rightOld_90003, 0, current_89666.childNodes.length)-0], X5BX5D__76832(newNode_89667, rightNew_90002), X5BX5D__76832(oldNode_89668, rightOld_90003));
 rightNew_90002 = subInt(rightNew_90002, 1);
 rightOld_90003 = subInt(rightOld_90003, 1);
@@ -1236,38 +1235,38 @@ rightOld_90003 = subInt(rightOld_90003, 1);
 }
 } while(false);
 F.line = 217;
-var nextChildPos_90065 = addInt(rightOld_90003, 1);
+var nextChildPos_90059 = addInt(rightOld_90003, 1);
 L9: do {
 F.line = 218;
 L10: while (true) {
 if (!(left_90001 <= rightNew_90002)) break L10;
-if ((nextChildPos_90065 == oldLength_89691)) {
+if ((nextChildPos_90059 == oldLength_89691)) {
 current_89666.appendChild(vnodeToDom_89120(X5BX5D__76832(newNode_89667, left_90001)));
 }
 else {
-current_89666.insertBefore(vnodeToDom_89120(X5BX5D__76832(newNode_89667, left_90001)), current_89666.childNodes[chckIndx(nextChildPos_90065, 0, current_89666.childNodes.length)-0]);
+current_89666.insertBefore(vnodeToDom_89120(X5BX5D__76832(newNode_89667, left_90001)), current_89666.childNodes[chckIndx(nextChildPos_90059, 0, current_89666.childNodes.length)-0]);
 }
 
 oldLength_89691 = addInt(oldLength_89691, 1);
 left_90001 = addInt(left_90001, 1);
-nextChildPos_90065 = addInt(nextChildPos_90065, 1);
+nextChildPos_90059 = addInt(nextChildPos_90059, 1);
 }
 } while(false);
 L11: do {
 F.line = 228;
-var i_90102 = 0;
+var i_90096 = 0;
 F.line = 1942;
-var res_90110 = left_90001;
+var res_90104 = left_90001;
 L12: do {
 F.line = 1943;
 L13: while (true) {
-if (!(res_90110 <= rightOld_90003)) break L13;
+if (!(res_90104 <= rightOld_90003)) break L13;
 F.line = 1944;
-i_90102 = res_90110;
+i_90096 = res_90104;
 F.line = 229;
-X5BX5D__76832(oldNode_89668, i_90102).dom = null;
+X5BX5D__76832(oldNode_89668, i_90096).dom = null;
 current_89666.removeChild(current_89666.childNodes[chckIndx(left_90001, 0, current_89666.childNodes.length)-0]);
-res_90110 = addInt(res_90110, 1);
+res_90104 = addInt(res_90104, 1);
 }
 } while(false);
 } while(false);
