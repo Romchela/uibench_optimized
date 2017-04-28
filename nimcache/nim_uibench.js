@@ -453,7 +453,7 @@ var toFocusV_89022 = [null];
 var dorender_89480 = [null];
 var currentTree_89481 = [null];
 var appState_94089 = [null];
-uibench.init("Nim-karax-optimized", "0.6.1");
+uibench.init("Nim-karax-optimized", "???");
 function setRendererOnly_90411(renderer_90415) {
 
 var F={procname:"karax.setRendererOnly",prev:framePtr,filename:"/Users/romchela/Xored/pragmagic/src/karax.nim",line:0};
