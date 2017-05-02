@@ -330,7 +330,7 @@ var toFocusV_89022 = [null];
 var dorender_89480 = [null];
 var currentTree_89481 = [null];
 var appState_94089 = [null];
-uibench.init("nim-karax-bfs", "0.6.1.1");
+uibench.init("nim-karax-childNodes", "0.6.1.1");
 function setRendererOnly_90411(renderer_90415) {
 
 dorender_89480[0] = renderer_90415;
