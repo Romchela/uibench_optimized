@@ -330,7 +330,7 @@ var toFocusV_89022 = [null];
 var dorender_89480 = [null];
 var currentTree_89481 = [null];
 var appState_94089 = [null];
-uibench.init("nim-karax-childNodes", "0.6.1.1");
+uibench.init("nim-karax-last", "0.6.1.1");
 function setRendererOnly_90411(renderer_90415) {
 
 dorender_89480[0] = renderer_90415;
@@ -804,74 +804,60 @@ var result_89549 = false;
 result_89549 = eq_76618(a_89547, b_89548);
 return result_89549;
 }
-function setDomField_89663(a_89665, b_89666) {
+function X5BX5Deq__76909(x_76911, idx_76912, y_76913) {
 
-a_89665.dom = b_89666.dom;
-L1: do {
-var i_89676 = 0;
-var colontmp__89678 = 0;
-colontmp__89678 = len_76893(a_89665);
-var i_89681 = 0;
-L2: do {
-L3: while (true) {
-if (!(i_89681 < colontmp__89678)) break L3;
-i_89676 = i_89681;
-setDomField_89663(X5BX5D__76904(a_89665, i_89676), X5BX5D__76904(b_89666, i_89676));
-i_89681 += 1;
+x_76911.kids[idx_76912] = y_76913;
 }
-} while(false);
-} while(false);
-}
-function updateElement_89683(parent_89685, current_89686, newNode_89687, oldNode_89688) {
+function updateElement_89663(parent_89665, current_89666, newNode_89667, oldNode_89668) {
 
 var Tmp7;
 var Tmp8;
-newNode_89687.dom = oldNode_89688.dom;
-if (!(equalsShallow_89489(newNode_89687, oldNode_89688))) {
-oldNode_89688.dom = null;
-var n_89689 = vnodeToDom_89120(newNode_89687);
-if ((parent_89685 == null)) {
-replaceById_89484("ROOT", n_89689);
+newNode_89667.dom = oldNode_89668.dom;
+if (!(equalsShallow_89489(newNode_89667, oldNode_89668))) {
+oldNode_89668.dom = null;
+var n_89669 = vnodeToDom_89120(newNode_89667);
+if ((parent_89665 == null)) {
+replaceById_89484("ROOT", n_89669);
 }
 else {
-parent_89685.replaceChild(n_89689, current_89686);
+parent_89665.replaceChild(n_89669, current_89666);
 }
 
 }
 else {
-if (!((newNode_89687.kind == 0))) {
-var newLength_89710 = len_76893(newNode_89687);
-var oldLength_89711 = len_76893(oldNode_89688);
+if (!((newNode_89667.kind == 0))) {
+var newLength_89690 = len_76893(newNode_89667);
+var oldLength_89691 = len_76893(oldNode_89668);
 var left_90001 = 0;
-var rightNew_90002 = (newLength_89710 - 1);
-var rightOld_90003 = (oldLength_89711 - 1);
+var rightNew_90002 = (newLength_89690 - 1);
+var rightOld_90003 = (oldLength_89691 - 1);
 L1: do {
 L2: while (true) {
 if (!(left_90001 <= nimMin(rightNew_90002, rightOld_90003))) break L2;
 var minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
 L3: do {
 L4: while (true) {
-if (!((left_90001 <= minRight_90004) && equalsTree_89545(X5BX5D__76904(newNode_89687, left_90001), X5BX5D__76904(oldNode_89688, left_90001)))) break L4;
-setDomField_89663(X5BX5D__76904(newNode_89687, left_90001), X5BX5D__76904(oldNode_89688, left_90001));
+if (!((left_90001 <= minRight_90004) && equalsTree_89545(X5BX5D__76904(newNode_89667, left_90001), X5BX5D__76904(oldNode_89668, left_90001)))) break L4;
+X5BX5Deq__76909(newNode_89667, left_90001, X5BX5D__76904(oldNode_89668, left_90001));
 left_90001 += 1;
 }
 } while(false);
 L5: do {
 L6: while (true) {
-if (!(left_90001 < rightOld_90003)) Tmp8 = false; else {Tmp8 = (left_90001 < rightNew_90002); }if (!Tmp8) Tmp7 = false; else {Tmp7 = equalsTree_89545(X5BX5D__76904(newNode_89687, rightNew_90002), X5BX5D__76904(oldNode_89688, rightOld_90003)); }if (!Tmp7) break L6;
-setDomField_89663(X5BX5D__76904(newNode_89687, rightNew_90002), X5BX5D__76904(oldNode_89688, rightOld_90003));
+if (!(left_90001 < rightOld_90003)) Tmp8 = false; else {Tmp8 = (left_90001 < rightNew_90002); }if (!Tmp8) Tmp7 = false; else {Tmp7 = equalsTree_89545(X5BX5D__76904(newNode_89667, rightNew_90002), X5BX5D__76904(oldNode_89668, rightOld_90003)); }if (!Tmp7) break L6;
+X5BX5Deq__76909(newNode_89667, rightNew_90002, X5BX5D__76904(oldNode_89668, rightOld_90003));
 rightOld_90003 -= 1;
 rightNew_90002 -= 1;
 }
 } while(false);
 minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
 if ((left_90001 <= minRight_90004)) {
-updateElement_89683(current_89686, X5BX5D__76904(oldNode_89688, left_90001).dom, X5BX5D__76904(newNode_89687, left_90001), X5BX5D__76904(oldNode_89688, left_90001));
+updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, left_90001).dom, X5BX5D__76904(newNode_89667, left_90001), X5BX5D__76904(oldNode_89668, left_90001));
 left_90001 += 1;
 }
 
 if ((left_90001 < minRight_90004)) {
-updateElement_89683(current_89686, X5BX5D__76904(oldNode_89688, rightOld_90003).dom, X5BX5D__76904(newNode_89687, rightNew_90002), X5BX5D__76904(oldNode_89688, rightOld_90003));
+updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, rightOld_90003).dom, X5BX5D__76904(newNode_89667, rightNew_90002), X5BX5D__76904(oldNode_89668, rightOld_90003));
 rightNew_90002 -= 1;
 rightOld_90003 -= 1;
 }
@@ -879,15 +865,15 @@ rightOld_90003 -= 1;
 }
 } while(false);
 var posNextElem_90059 = (rightOld_90003 + 1);
-var isPushBack_90060 = (posNextElem_90059 == oldLength_89711);
+var isPushBack_90060 = (posNextElem_90059 == oldLength_89691);
 L9: do {
 L10: while (true) {
 if (!(left_90001 <= rightNew_90002)) break L10;
 if (isPushBack_90060) {
-current_89686.appendChild(vnodeToDom_89120(X5BX5D__76904(newNode_89687, left_90001)));
+current_89666.appendChild(vnodeToDom_89120(X5BX5D__76904(newNode_89667, left_90001)));
 }
 else {
-current_89686.insertBefore(vnodeToDom_89120(X5BX5D__76904(newNode_89687, left_90001)), X5BX5D__76904(oldNode_89688, posNextElem_90059).dom);
+current_89666.insertBefore(vnodeToDom_89120(X5BX5D__76904(newNode_89667, left_90001)), X5BX5D__76904(oldNode_89668, posNextElem_90059).dom);
 }
 
 left_90001 += 1;
@@ -900,8 +886,8 @@ L12: do {
 L13: while (true) {
 if (!(res_90087 <= rightOld_90003)) break L13;
 i_90079 = res_90087;
-current_89686.removeChild(X5BX5D__76904(oldNode_89688, i_90079).dom);
-X5BX5D__76904(oldNode_89688, i_90079).dom = null;
+current_89666.removeChild(X5BX5D__76904(oldNode_89668, i_90079).dom);
+X5BX5D__76904(oldNode_89668, i_90079).dom = null;
 res_90087 += 1;
 }
 } while(false);
@@ -971,7 +957,7 @@ replaceById_89484("ROOT", asdom_90221);
 }
 else {
 var olddom_90222 = document.getElementById("ROOT");
-updateElement_89683(null, olddom_90222, newtree_90209, currentTree_89481[0]);
+updateElement_89663(null, olddom_90222, newtree_90209, currentTree_89481[0]);
 if (someDirty_87055[0]) {
 updateDirtyElements_89601(null, olddom_90222, newtree_90209);
 someDirty_87055[0] = false;
