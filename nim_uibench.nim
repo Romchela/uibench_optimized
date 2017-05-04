@@ -35,10 +35,8 @@ proc createTableCell(id: cstring): VNode =
         text id
 
 proc createTableRow(item: TableItemState): VNode =
-    var className = cstring"TableRow"
-    if item.active:
-        className = cstring"TableRow active"
-    result = buildHtml(tr(class=className, `data-id` = &item.id)):
+    let className = if item.active: cstring"TableRow active" else: cstring"TableRow"
+    result = buildHtml(tr(class=className, `data-id` = &item.id, track = item.id)):
         createTableCell("#" & &item.id)
         for i in 0..<len(item.props):
             createTableCell(item.props[i])
@@ -51,19 +49,17 @@ proc tableCreateVNode(data: TableState): VNode =
 
 proc createAnimBox(item: AnimBoxState): VNode =
     let time = item.time
-    let dataId: cstring = &item.id
-    let color: float = float(time mod 10) / 10
-    let divStyles: cstring = "border-radius: " & &(time mod 10) & "px; background: rgba(0,0,0," & cstring($color) & ")"
-    result = flatHtml(tdiv(class="AnimBox", `data-id`=dataId, style=divStyles))
+    let t10 = time mod 10
+    let color = float(t10) / 10
+    let divStyles = cstring"border-radius: " & &t10 &
+         "px; background: rgba(0,0,0," & cstring($color) & ")"
+    result = flatHtml(tdiv(class="AnimBox", `data-id` = &item.id, track = item.id,
+        style=divStyles))
 
 proc animCreateVNode(data: AnimState): VNode =
     result = buildHtml(tdiv(class="Anim")):
         for child in data.items:
             createAnimBox(child)
-
-proc createTreeLeaf(data: TreeNodeState): VNode =
-    result = buildHtml(li(class="TreeLeaf")):
-        text &data.id
 
 proc createTreeNode(data: TreeNodeState): VNode =
     result = buildHtml(ul(class="TreeNode")):
@@ -71,12 +67,12 @@ proc createTreeNode(data: TreeNodeState): VNode =
             if n.container:
                 createTreeNode(n)
             else:
-                createTreeLeaf(n)
+                li(class="TreeLeaf"):
+                    text &n.id
 
 proc treeCreateVNode(data: TreeState): VNode =
     result = buildHtml(tdiv(class="Tree")):
         createTreeNode(data.root)
-
 
 proc update(): VNode =
     assert appState != nil
@@ -104,7 +100,7 @@ proc b(samples: RootRef) =
 proc init*(a: cstring, b: cstring) {.importc: "uibench.init", nodecl.}
 proc run*(a: proc(state: AppState), b: proc(samples: RootRef)) {.importc: "uibench.run", nodecl.}
 
-init(cstring"nim-karax-last", cstring"0.6.1.1")
+init(cstring"Nim-karax-track", cstring"0.6.1")
 
 setRendererOnly update
 run(a, b)

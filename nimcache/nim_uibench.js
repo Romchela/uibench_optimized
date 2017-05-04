@@ -330,7 +330,7 @@ var toFocusV_89022 = [null];
 var dorender_89480 = [null];
 var currentTree_89481 = [null];
 var appState_94089 = [null];
-uibench.init("nim-karax-last", "0.6.1.1");
+uibench.init("Nim-karax-track", "0.6.1");
 function setRendererOnly_90411(renderer_90415) {
 
 dorender_89480[0] = renderer_90415;
@@ -338,7 +338,7 @@ dorender_89480[0] = renderer_90415;
 function newVNode_76928(kind_76930) {
 
 var result_76931 = null;
-result_76931 = {kind: kind_76930, key: -1, id: null, class: null, text: null, kids: null, attrs: null, events: null, dom: null};
+result_76931 = {kind: kind_76930, key: -1, id: null, class: null, text: null, kids: null, attrs: null, events: null, track: 0, dom: null};
 return result_76931;
 }
 function add_76914(parent_76916, kid_76917) {
@@ -363,25 +363,25 @@ i_76967 += 1;
 } while(false);
 return result_76938;
 }
-function setAttr_76714(n_76716, key_76717, val_76718) {
+function setAttr_76716(n_76718, key_76719, val_76720) {
 
 BeforeRet: do {
-if ((n_76716.attrs === null)) {
-var x_76813 = [key_76717, val_76718];
-n_76716.attrs = x_76813;
+if ((n_76718.attrs === null)) {
+var x_76813 = [key_76719, val_76720];
+n_76718.attrs = x_76813;
 }
 else {
 L1: do {
 var i_76832 = 0;
 var colontmp__76854 = 0;
-colontmp__76854 = ((n_76716.attrs != null ? n_76716.attrs.length : 0) - 2);
+colontmp__76854 = ((n_76718.attrs != null ? n_76718.attrs.length : 0) - 2);
 var res_76857 = 0;
 L2: do {
 L3: while (true) {
 if (!(res_76857 <= colontmp__76854)) break L3;
 i_76832 = res_76857;
-if ((n_76716.attrs[i_76832] == key_76717)) {
-n_76716.attrs[(i_76832 + 1)] = val_76718;
+if ((n_76718.attrs[i_76832] == key_76719)) {
+n_76718.attrs[(i_76832 + 1)] = val_76720;
 break BeforeRet;
 }
 
@@ -389,8 +389,8 @@ res_76857 += 2;
 }
 } while(false);
 } while(false);
-if (n_76716.attrs != null) { n_76716.attrs.push(key_76717); } else { n_76716.attrs = [key_76717]; };
-if (n_76716.attrs != null) { n_76716.attrs.push(val_76718); } else { n_76716.attrs = [val_76718]; };
+if (n_76718.attrs != null) { n_76718.attrs.push(key_76719); } else { n_76718.attrs = [key_76719]; };
+if (n_76718.attrs != null) { n_76718.attrs.push(val_76720); } else { n_76718.attrs = [val_76720]; };
 }
 
 } while (false); 
@@ -411,15 +411,15 @@ result_89016 = -1;
 
 return result_89016;
 }
-function valueeq__76508(n_76510, v_76511) {
+function valueeq__76510(n_76512, v_76513) {
 
-n_76510.text = v_76511;
+n_76512.text = v_76513;
 }
-function value_76504(n_76506) {
+function value_76506(n_76508) {
 
-var result_76507 = null;
-result_76507 = n_76506.text;
-return result_76507;
+var result_76509 = null;
+result_76509 = n_76508.text;
+return result_76509;
 }
 function wrapEvent_89047(d_89049, n_89050, k_89051, action_89052) {
 
@@ -429,9 +429,9 @@ function colonanonymous__89087(ev_89089) {
 
 function wrapper_89090() {
 
-valueeq__76508(n_89085, ev_89089.target.value);
+valueeq__76510(n_89085, ev_89089.target.value);
 action_89084(ev_89089, n_89085);
-ev_89089.target.value = value_76504(n_89085);
+ev_89089.target.value = value_76506(n_89085);
 }
 if (!((timer_89086 == null))) {
 clearTimeout(timer_89086);
@@ -451,9 +451,9 @@ function enterWrapper_89064() {
 function colonanonymous__89072(ev_89074) {
 
 if ((ev_89074.keyCode == 13)) {
-valueeq__76508(n_89071, ev_89074.target.value);
+valueeq__76510(n_89071, ev_89074.target.value);
 action_89070(ev_89074, n_89071);
-ev_89074.target.value = value_76504(n_89071);
+ev_89074.target.value = value_76506(n_89071);
 }
 
 }
@@ -645,6 +645,7 @@ return result_77080;
 function equalsShallow_89489(a_89491, b_89492) {
 
 var Tmp1;
+var Tmp5;
 var result_89493 = false;
 BeforeRet: do {
 if (!((a_89491.kind == b_89492.kind))) {
@@ -711,97 +712,111 @@ result_89493 = false;
 break BeforeRet;
 }
 
+if (!!((a_89491.track == 0))) Tmp5 = false; else {Tmp5 = !((b_89492.track == 0)); }if (Tmp5) {
+if (!((a_89491.track == b_89492.track))) {
+result_89493 = false;
+break BeforeRet;
+}
+
+}
+
 result_89493 = true;
 break BeforeRet;
 } while (false); 
 return result_89493;
 }
-function eq_76618(a_76620, b_76621) {
+function eq_76620(a_76622, b_76623) {
 
-var result_76622 = false;
+var Tmp1;
+var result_76624 = false;
 BeforeRet: do {
-if (!((a_76620.kind == b_76621.kind))) {
-result_76622 = false;
+if (!!((a_76622.track == 0))) Tmp1 = false; else {Tmp1 = !((b_76623.track == 0)); }if (Tmp1) {
+result_76624 = (a_76622.track == b_76623.track);
 break BeforeRet;
 }
 
-if (!((a_76620.id == b_76621.id))) {
-result_76622 = false;
+if (!((a_76622.kind == b_76623.kind))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-if (!((a_76620.class == b_76621.class))) {
-result_76622 = false;
+if (!((a_76622.id == b_76623.id))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-if (!((a_76620.key == b_76621.key))) {
-result_76622 = false;
+if (!((a_76622.class == b_76623.class))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-if (!((a_76620.kind == 0))) {
-if (!(((a_76620.kids != null ? a_76620.kids.length : 0) == (b_76621.kids != null ? b_76621.kids.length : 0)))) {
-result_76622 = false;
+if (!((a_76622.key == b_76623.key))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-L1: do {
-var i_76670 = 0;
-var colontmp__76703 = 0;
-colontmp__76703 = (a_76620.kids != null ? a_76620.kids.length : 0);
-var i_76706 = 0;
+if (!((a_76622.kind == 0))) {
+if (!(((a_76622.kids != null ? a_76622.kids.length : 0) == (b_76623.kids != null ? b_76623.kids.length : 0)))) {
+result_76624 = false;
+break BeforeRet;
+}
+
 L2: do {
-L3: while (true) {
-if (!(i_76706 < colontmp__76703)) break L3;
-i_76670 = i_76706;
-if (!(eq_76618(a_76620.kids[i_76670], b_76621.kids[i_76670]))) {
-result_76622 = false;
+var i_76672 = 0;
+var colontmp__76705 = 0;
+colontmp__76705 = (a_76622.kids != null ? a_76622.kids.length : 0);
+var i_76708 = 0;
+L3: do {
+L4: while (true) {
+if (!(i_76708 < colontmp__76705)) break L4;
+i_76672 = i_76708;
+if (!(eq_76620(a_76622.kids[i_76672], b_76623.kids[i_76672]))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-i_76706 += 1;
+i_76708 += 1;
 }
 } while(false);
 } while(false);
 }
 
-if (!((a_76620.text == b_76621.text))) {
-result_76622 = false;
+if (!((a_76622.text == b_76623.text))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-if (!(((a_76620.attrs != null ? a_76620.attrs.length : 0) == (b_76621.attrs != null ? b_76621.attrs.length : 0)))) {
-result_76622 = false;
+if (!(((a_76622.attrs != null ? a_76622.attrs.length : 0) == (b_76623.attrs != null ? b_76623.attrs.length : 0)))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-L4: do {
-var i_76701 = 0;
-var colontmp__76709 = 0;
-colontmp__76709 = (a_76620.attrs != null ? a_76620.attrs.length : 0);
-var i_76712 = 0;
 L5: do {
-L6: while (true) {
-if (!(i_76712 < colontmp__76709)) break L6;
-i_76701 = i_76712;
-if (!((a_76620.attrs[i_76701] == b_76621.attrs[i_76701]))) {
-result_76622 = false;
+var i_76703 = 0;
+var colontmp__76711 = 0;
+colontmp__76711 = (a_76622.attrs != null ? a_76622.attrs.length : 0);
+var i_76714 = 0;
+L6: do {
+L7: while (true) {
+if (!(i_76714 < colontmp__76711)) break L7;
+i_76703 = i_76714;
+if (!((a_76622.attrs[i_76703] == b_76623.attrs[i_76703]))) {
+result_76624 = false;
 break BeforeRet;
 }
 
-i_76712 += 1;
+i_76714 += 1;
 }
 } while(false);
 } while(false);
-result_76622 = true;
+result_76624 = true;
 } while (false); 
-return result_76622;
+return result_76624;
 }
 function equalsTree_89545(a_89547, b_89548) {
 
 var result_89549 = false;
-result_89549 = eq_76618(a_89547, b_89548);
+result_89549 = eq_76620(a_89547, b_89548);
 return result_89549;
 }
 function X5BX5Deq__76909(x_76911, idx_76912, y_76913) {
@@ -988,7 +1003,7 @@ addEventListener_77118(n_90420, k_90421, wrapper_90423);
 function text_77012(s_77014) {
 
 var result_77015 = null;
-result_77015 = {kind: 0, text: s_77014, key: -1, id: null, class: null, kids: null, attrs: null, events: null, dom: null};
+result_77015 = {kind: 0, text: s_77014, key: -1, id: null, class: null, kids: null, attrs: null, events: null, track: 0, dom: null};
 return result_77015;
 }
 function createTableCell_94091(id_94093) {
@@ -1007,24 +1022,29 @@ return result_94094;
 }
 function createTableRow_94115(item_94117) {
 
+var Tmp1;
 var result_94118 = null;
-var className_94119 = "TableRow";
 if (item_94117.active) {
-className_94119 = "TableRow active";
+Tmp1 = "TableRow active";
+}
+else {
+Tmp1 = "TableRow";
 }
 
+var className_94119 = Tmp1;
 var tmp_94126 = tree_76933(94, []);
 tmp_94126.class = className_94119;
-setAttr_76714(tmp_94126, "data-id", ((item_94117.id)+''));
+setAttr_76716(tmp_94126, "data-id", ((item_94117.id)+''));
+tmp_94126.track = item_94117.id;
 add_76914(tmp_94126, createTableCell_94091(("#" + ((item_94117.id)+''))));
-L1: do {
+L2: do {
 var i_94143 = 0;
 var colontmp__94146 = 0;
 colontmp__94146 = (item_94117.props != null ? item_94117.props.length : 0);
 var i_94149 = 0;
-L2: do {
-L3: while (true) {
-if (!(i_94149 < colontmp__94146)) break L3;
+L3: do {
+L4: while (true) {
+if (!(i_94149 < colontmp__94146)) break L4;
 i_94143 = i_94149;
 add_76914(tmp_94126, createTableCell_94091(item_94117.props[i_94143]));
 i_94149 += 1;
@@ -1063,89 +1083,84 @@ function createAnimBox_94412(item_94414) {
 
 var result_94415 = null;
 var time_94416 = item_94414.time;
-var dataId_94417 = ((item_94414.id)+'');
-var color_94420 = (Math.floor(time_94416 % 10) / 1.0000000000000000e+01);
-var divStyles_94422 = (((("border-radius: " + ((Math.floor(time_94416 % 10))+'')) + "px; background: rgba(0,0,0,") + toJSStr(cstrToNimstr((color_94420)+""))) + ")");
-var tmp_94429 = tree_76933(41, []);
-tmp_94429.class = "AnimBox";
-setAttr_76714(tmp_94429, "data-id", dataId_94417);
-setAttr_76714(tmp_94429, "style", divStyles_94422);
-result_94415 = tmp_94429;
+var t10_94418 = Math.floor(time_94416 % 10);
+var color_94420 = (t10_94418 / 1.0000000000000000e+01);
+var divStyles_94421 = (((("border-radius: " + ((t10_94418)+'')) + "px; background: rgba(0,0,0,") + toJSStr(cstrToNimstr((color_94420)+""))) + ")");
+var tmp_94428 = tree_76933(41, []);
+tmp_94428.class = "AnimBox";
+setAttr_76716(tmp_94428, "data-id", ((item_94414.id)+''));
+tmp_94428.track = item_94414.id;
+setAttr_76716(tmp_94428, "style", divStyles_94421);
+result_94415 = tmp_94428;
 return result_94415;
 }
-function animCreateVNode_94436(data_94438) {
+function animCreateVNode_94432(data_94434) {
 
-var result_94439 = null;
-var tmp_94446 = tree_76933(41, []);
-tmp_94446.class = "Anim";
+var result_94435 = null;
+var tmp_94442 = tree_76933(41, []);
+tmp_94442.class = "Anim";
 L1: do {
 var child_94602 = null;
 var colontmp__94605 = null;
-colontmp__94605 = data_94438.items;
+colontmp__94605 = data_94434.items;
 var i_94608 = 0;
 var L_94610 = (colontmp__94605 != null ? colontmp__94605.length : 0);
 L2: do {
 L3: while (true) {
 if (!(i_94608 < L_94610)) break L3;
 child_94602 = colontmp__94605[i_94608];
-add_76914(tmp_94446, createAnimBox_94412(child_94602));
+add_76914(tmp_94442, createAnimBox_94412(child_94602));
 i_94608 += 1;
 }
 } while(false);
 } while(false);
-result_94439 = tmp_94446;
-return result_94439;
+result_94435 = tmp_94442;
+return result_94435;
 }
-function createTreeLeaf_94611(data_94613) {
+function createTreeNode_94611(data_94613) {
 
 var result_94614 = null;
-var tmp_94621 = tree_76933(35, []);
-tmp_94621.class = "TreeLeaf";
-add_76914(tmp_94621, text_77012(((data_94613.id)+'')));
-result_94614 = tmp_94621;
-return result_94614;
-}
-function createTreeNode_94623(data_94625) {
-
-var result_94626 = null;
-var tmp_94633 = tree_76933(34, []);
-tmp_94633.class = "TreeNode";
+var tmp_94622 = tree_76933(34, []);
+tmp_94622.class = "TreeNode";
 L1: do {
 var n_94802 = null;
-var colontmp__94805 = null;
-colontmp__94805 = data_94625.children;
-var i_94808 = 0;
-var L_94810 = (colontmp__94805 != null ? colontmp__94805.length : 0);
+var colontmp__94812 = null;
+colontmp__94812 = data_94613.children;
+var i_94815 = 0;
+var L_94817 = (colontmp__94812 != null ? colontmp__94812.length : 0);
 L2: do {
 L3: while (true) {
-if (!(i_94808 < L_94810)) break L3;
-n_94802 = colontmp__94805[i_94808];
+if (!(i_94815 < L_94817)) break L3;
+n_94802 = colontmp__94812[i_94815];
 if (n_94802.container) {
-add_76914(tmp_94633, createTreeNode_94623(n_94802));
+add_76914(tmp_94622, createTreeNode_94611(n_94802));
 }
 else {
-add_76914(tmp_94633, createTreeLeaf_94611(n_94802));
+var tmp_94808 = tree_76933(35, []);
+tmp_94808.class = "TreeLeaf";
+add_76914(tmp_94808, text_77012(((n_94802.id)+'')));
+add_76914(tmp_94622, tmp_94808);
 }
 
-i_94808 += 1;
+i_94815 += 1;
 }
 } while(false);
 } while(false);
-result_94626 = tmp_94633;
-return result_94626;
+result_94614 = tmp_94622;
+return result_94614;
 }
-function treeCreateVNode_94811(data_94813) {
+function treeCreateVNode_94818(data_94820) {
 
-var result_94814 = null;
-var tmp_94821 = tree_76933(41, []);
-tmp_94821.class = "Tree";
-add_76914(tmp_94821, createTreeNode_94623(data_94813.root));
-result_94814 = tmp_94821;
-return result_94814;
+var result_94821 = null;
+var tmp_94828 = tree_76933(41, []);
+tmp_94828.class = "Tree";
+add_76914(tmp_94828, createTreeNode_94611(data_94820.root));
+result_94821 = tmp_94828;
+return result_94821;
 }
-function update_94823() {
+function update_94830() {
 
-var result_94825 = null;
+var result_94832 = null;
 var location_95001 = appState_94089[0].location;
 var children_95002 = null;
 if ((location_95001 == "table")) {
@@ -1153,20 +1168,20 @@ children_95002 = tableCreateVNode_94151(appState_94089[0].table);
 }
 else {
 if ((location_95001 == "anim")) {
-children_95002 = animCreateVNode_94436(appState_94089[0].anim);
+children_95002 = animCreateVNode_94432(appState_94089[0].anim);
 }
 else {
 if ((location_95001 == "tree")) {
-children_95002 = treeCreateVNode_94811(appState_94089[0].tree);
+children_95002 = treeCreateVNode_94818(appState_94089[0].tree);
 }
 }}
 var tmp_95009 = tree_76933(41, []);
 tmp_95009.class = "Main";
 add_76914(tmp_95009, children_95002);
-result_94825 = tmp_95009;
-return result_94825;
+result_94832 = tmp_95009;
+return result_94832;
 }
-setRendererOnly_90411(update_94823);
+setRendererOnly_90411(update_94830);
 function redrawForce_90401() {
 
 dodraw_90201();
