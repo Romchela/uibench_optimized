@@ -338,7 +338,7 @@ dorender_89480[0] = renderer_90415;
 function newVNode_76928(kind_76930) {
 
 var result_76931 = null;
-result_76931 = {kind: kind_76930, key: -1, id: null, class: null, text: null, kids: null, attrs: null, events: null, track: 0, dom: null};
+result_76931 = {kind: kind_76930, key: -1, id: null, class: null, text: null, track: 0, kids: null, attrs: null, events: null, dom: null};
 return result_76931;
 }
 function add_76914(parent_76916, kid_76917) {
@@ -601,18 +601,6 @@ function replaceById_89484(id_89486, newTree_89487) {
 var x_89488 = document.getElementById(id_89486);
 x_89488.parentNode.replaceChild(newTree_89487, x_89488);
 }
-function len_76893(x_76895) {
-
-var result_76896 = 0;
-result_76896 = (x_76895.kids != null ? x_76895.kids.length : 0);
-return result_76896;
-}
-function X5BX5D__76904(x_76906, idx_76907) {
-
-var result_76908 = null;
-result_76908 = x_76906.kids[idx_76907];
-return result_76908;
-}
 function sameAttrs_77076(a_77078, b_77079) {
 
 var result_77080 = false;
@@ -645,7 +633,6 @@ return result_77080;
 function equalsShallow_89489(a_89491, b_89492) {
 
 var Tmp1;
-var Tmp5;
 var result_89493 = false;
 BeforeRet: do {
 if (!((a_89491.kind == b_89492.kind))) {
@@ -677,29 +664,6 @@ result_89493 = false;
 break BeforeRet;
 }
 
-if (!((len_76893(a_89491) == len_76893(b_89492)))) {
-result_89493 = false;
-break BeforeRet;
-}
-
-L2: do {
-var i_89538 = 0;
-var colontmp__89540 = 0;
-colontmp__89540 = len_76893(a_89491);
-var i_89543 = 0;
-L3: do {
-L4: while (true) {
-if (!(i_89543 < colontmp__89540)) break L4;
-i_89538 = i_89543;
-if (!(equalsShallow_89489(X5BX5D__76904(a_89491, i_89538), X5BX5D__76904(b_89492, i_89538)))) {
-result_89493 = false;
-break BeforeRet;
-}
-
-i_89543 += 1;
-}
-} while(false);
-} while(false);
 }
 }
 if (!(sameAttrs_77076(a_89491, b_89492))) {
@@ -712,121 +676,27 @@ result_89493 = false;
 break BeforeRet;
 }
 
-if (!!((a_89491.track == 0))) Tmp5 = false; else {Tmp5 = !((b_89492.track == 0)); }if (Tmp5) {
-if (!((a_89491.track == b_89492.track))) {
-result_89493 = false;
-break BeforeRet;
-}
-
-}
-
 result_89493 = true;
 break BeforeRet;
 } while (false); 
 return result_89493;
 }
-function eq_76620(a_76622, b_76623) {
+function len_76893(x_76895) {
 
-var Tmp1;
-var result_76624 = false;
-BeforeRet: do {
-if (!!((a_76622.track == 0))) Tmp1 = false; else {Tmp1 = !((b_76623.track == 0)); }if (Tmp1) {
-result_76624 = (a_76622.track == b_76623.track);
-break BeforeRet;
+var result_76896 = 0;
+result_76896 = (x_76895.kids != null ? x_76895.kids.length : 0);
+return result_76896;
 }
+function X5BX5D__76904(x_76906, idx_76907) {
 
-if (!((a_76622.kind == b_76623.kind))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-if (!((a_76622.id == b_76623.id))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-if (!((a_76622.class == b_76623.class))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-if (!((a_76622.key == b_76623.key))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-if (!((a_76622.kind == 0))) {
-if (!(((a_76622.kids != null ? a_76622.kids.length : 0) == (b_76623.kids != null ? b_76623.kids.length : 0)))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-L2: do {
-var i_76672 = 0;
-var colontmp__76705 = 0;
-colontmp__76705 = (a_76622.kids != null ? a_76622.kids.length : 0);
-var i_76708 = 0;
-L3: do {
-L4: while (true) {
-if (!(i_76708 < colontmp__76705)) break L4;
-i_76672 = i_76708;
-if (!(eq_76620(a_76622.kids[i_76672], b_76623.kids[i_76672]))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-i_76708 += 1;
-}
-} while(false);
-} while(false);
-}
-
-if (!((a_76622.text == b_76623.text))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-if (!(((a_76622.attrs != null ? a_76622.attrs.length : 0) == (b_76623.attrs != null ? b_76623.attrs.length : 0)))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-L5: do {
-var i_76703 = 0;
-var colontmp__76711 = 0;
-colontmp__76711 = (a_76622.attrs != null ? a_76622.attrs.length : 0);
-var i_76714 = 0;
-L6: do {
-L7: while (true) {
-if (!(i_76714 < colontmp__76711)) break L7;
-i_76703 = i_76714;
-if (!((a_76622.attrs[i_76703] == b_76623.attrs[i_76703]))) {
-result_76624 = false;
-break BeforeRet;
-}
-
-i_76714 += 1;
-}
-} while(false);
-} while(false);
-result_76624 = true;
-} while (false); 
-return result_76624;
-}
-function equalsTree_89545(a_89547, b_89548) {
-
-var result_89549 = false;
-result_89549 = eq_76620(a_89547, b_89548);
-return result_89549;
-}
-function X5BX5Deq__76909(x_76911, idx_76912, y_76913) {
-
-x_76911.kids[idx_76912] = y_76913;
+var result_76908 = null;
+result_76908 = x_76906.kids[idx_76907];
+return result_76908;
 }
 function updateElement_89663(parent_89665, current_89666, newNode_89667, oldNode_89668) {
 
-var Tmp7;
-var Tmp8;
+var Tmp5;
+var Tmp6;
 newNode_89667.dom = oldNode_89668.dom;
 if (!(equalsShallow_89489(newNode_89667, oldNode_89668))) {
 oldNode_89668.dom = null;
@@ -843,67 +713,65 @@ else {
 if (!((newNode_89667.kind == 0))) {
 var newLength_89690 = len_76893(newNode_89667);
 var oldLength_89691 = len_76893(oldNode_89668);
-var left_90001 = 0;
-var rightNew_90002 = (newLength_89690 - 1);
-var rightOld_90003 = (oldLength_89691 - 1);
+var minLength_89692 = nimMin(newLength_89690, oldLength_89691);
+var commonPrefix_90001 = 0;
 L1: do {
 L2: while (true) {
-if (!(left_90001 <= nimMin(rightNew_90002, rightOld_90003))) break L2;
-var minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
+if (!((commonPrefix_90001 < minLength_89692) && equalsShallow_89489(X5BX5D__76904(newNode_89667, commonPrefix_90001), X5BX5D__76904(oldNode_89668, commonPrefix_90001)))) break L2;
+updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, commonPrefix_90001).dom, X5BX5D__76904(newNode_89667, commonPrefix_90001), X5BX5D__76904(oldNode_89668, commonPrefix_90001));
+commonPrefix_90001 += 1;
+}
+} while(false);
+var oldPos_90011 = (oldLength_89691 - 1);
+var newPos_90012 = (newLength_89690 - 1);
 L3: do {
 L4: while (true) {
-if (!((left_90001 <= minRight_90004) && equalsTree_89545(X5BX5D__76904(newNode_89667, left_90001), X5BX5D__76904(oldNode_89668, left_90001)))) break L4;
-X5BX5Deq__76909(newNode_89667, left_90001, X5BX5D__76904(oldNode_89668, left_90001));
-left_90001 += 1;
+if (!(commonPrefix_90001 <= oldPos_90011)) Tmp6 = false; else {Tmp6 = (commonPrefix_90001 <= newPos_90012); }if (!Tmp6) Tmp5 = false; else {Tmp5 = equalsShallow_89489(X5BX5D__76904(newNode_89667, newPos_90012), X5BX5D__76904(oldNode_89668, oldPos_90011)); }if (!Tmp5) break L4;
+updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, oldPos_90011).dom, X5BX5D__76904(newNode_89667, newPos_90012), X5BX5D__76904(oldNode_89668, oldPos_90011));
+oldPos_90011 -= 1;
+newPos_90012 -= 1;
 }
 } while(false);
-L5: do {
-L6: while (true) {
-if (!(left_90001 < rightOld_90003)) Tmp8 = false; else {Tmp8 = (left_90001 < rightNew_90002); }if (!Tmp8) Tmp7 = false; else {Tmp7 = equalsTree_89545(X5BX5D__76904(newNode_89667, rightNew_90002), X5BX5D__76904(oldNode_89668, rightOld_90003)); }if (!Tmp7) break L6;
-X5BX5Deq__76909(newNode_89667, rightNew_90002, X5BX5D__76904(oldNode_89668, rightOld_90003));
-rightOld_90003 -= 1;
-rightNew_90002 -= 1;
+var pos_90031 = (nimMin(oldPos_90011, newPos_90012) + 1);
+L7: do {
+var i_90041 = 0;
+var colontmp__90066 = 0;
+colontmp__90066 = (pos_90031 - 1);
+var res_90069 = commonPrefix_90001;
+L8: do {
+L9: while (true) {
+if (!(res_90069 <= colontmp__90066)) break L9;
+i_90041 = res_90069;
+updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, i_90041).dom, X5BX5D__76904(newNode_89667, i_90041), X5BX5D__76904(oldNode_89668, i_90041));
+res_90069 += 1;
 }
 } while(false);
-minRight_90004 = nimMin(rightOld_90003, rightNew_90002);
-if ((left_90001 <= minRight_90004)) {
-updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, left_90001).dom, X5BX5D__76904(newNode_89667, left_90001), X5BX5D__76904(oldNode_89668, left_90001));
-left_90001 += 1;
-}
-
-if ((left_90001 < minRight_90004)) {
-updateElement_89663(current_89666, X5BX5D__76904(oldNode_89668, rightOld_90003).dom, X5BX5D__76904(newNode_89667, rightNew_90002), X5BX5D__76904(oldNode_89668, rightOld_90003));
-rightNew_90002 -= 1;
-rightOld_90003 -= 1;
-}
-
-}
 } while(false);
-var posNextElem_90059 = (rightOld_90003 + 1);
-var isPushBack_90060 = (posNextElem_90059 == oldLength_89691);
-L9: do {
-L10: while (true) {
-if (!(left_90001 <= rightNew_90002)) break L10;
-if (isPushBack_90060) {
-current_89666.appendChild(vnodeToDom_89120(X5BX5D__76904(newNode_89667, left_90001)));
+var posNextElem_90042 = (oldPos_90011 + 1);
+var isPushBack_90043 = (posNextElem_90042 == oldLength_89691);
+L10: do {
+L11: while (true) {
+if (!(pos_90031 <= newPos_90012)) break L11;
+if (isPushBack_90043) {
+current_89666.appendChild(vnodeToDom_89120(X5BX5D__76904(newNode_89667, pos_90031)));
 }
 else {
-current_89666.insertBefore(vnodeToDom_89120(X5BX5D__76904(newNode_89667, left_90001)), X5BX5D__76904(oldNode_89668, posNextElem_90059).dom);
+current_89666.insertBefore(vnodeToDom_89120(X5BX5D__76904(newNode_89667, pos_90031)), X5BX5D__76904(oldNode_89668, posNextElem_90042).dom);
 }
 
-left_90001 += 1;
+pos_90031 += 1;
 }
 } while(false);
-L11: do {
-var i_90079 = 0;
-var res_90087 = left_90001;
 L12: do {
-L13: while (true) {
-if (!(res_90087 <= rightOld_90003)) break L13;
-i_90079 = res_90087;
-current_89666.removeChild(X5BX5D__76904(oldNode_89668, i_90079).dom);
-X5BX5D__76904(oldNode_89668, i_90079).dom = null;
-res_90087 += 1;
+var i_90062 = 0;
+var res_90077 = pos_90031;
+L13: do {
+L14: while (true) {
+if (!(res_90077 <= oldPos_90011)) break L14;
+i_90062 = res_90077;
+current_89666.removeChild(X5BX5D__76904(oldNode_89668, i_90062).dom);
+X5BX5D__76904(oldNode_89668, i_90062).dom = null;
+res_90077 += 1;
 }
 } while(false);
 } while(false);
@@ -1003,7 +871,7 @@ addEventListener_77118(n_90420, k_90421, wrapper_90423);
 function text_77012(s_77014) {
 
 var result_77015 = null;
-result_77015 = {kind: 0, text: s_77014, key: -1, id: null, class: null, kids: null, attrs: null, events: null, track: 0, dom: null};
+result_77015 = {kind: 0, text: s_77014, key: -1, id: null, class: null, track: 0, kids: null, attrs: null, events: null, dom: null};
 return result_77015;
 }
 function createTableCell_94091(id_94093) {
@@ -1035,7 +903,7 @@ var className_94119 = Tmp1;
 var tmp_94126 = tree_76933(94, []);
 tmp_94126.class = className_94119;
 setAttr_76716(tmp_94126, "data-id", ((item_94117.id)+''));
-tmp_94126.track = item_94117.id;
+tmp_94126.key = item_94117.id;
 add_76914(tmp_94126, createTableCell_94091(("#" + ((item_94117.id)+''))));
 L2: do {
 var i_94143 = 0;
@@ -1089,7 +957,7 @@ var divStyles_94421 = (((("border-radius: " + ((t10_94418)+'')) + "px; backgroun
 var tmp_94428 = tree_76933(41, []);
 tmp_94428.class = "AnimBox";
 setAttr_76716(tmp_94428, "data-id", ((item_94414.id)+''));
-tmp_94428.track = item_94414.id;
+tmp_94428.key = item_94414.id;
 setAttr_76716(tmp_94428, "style", divStyles_94421);
 result_94415 = tmp_94428;
 return result_94415;
