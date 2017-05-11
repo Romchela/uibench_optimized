@@ -183,6 +183,23 @@ unhandledException(e_40206);
 throw e_40206;}
 var toTag_76449 = nimCopy(null, ["#text", "#int", "#bool", "#vthunk", "#dthunk", "HTML", "HEAD", "TITLE", "BASE", "LINK", "META", "STYLE", "SCRIPT", "NOSCRIPT", "BODY", "SECTION", "NAV", "ARTICLE", "ASIDE", "H1", "H2", "H3", "H4", "H5", "H6", "HEADER", "FOOTER", "ADDRESS", "MAIN", "P", "HR", "PRE", "BLOCKQUOTE", "OL", "UL", "LI", "DL", "DT", "DD", "FIGURE", "FIGCAPTION", "DIV", "A", "EM", "STRONG", "SMALL", "S", "CITE", "QUOTE", "DFN", "ABBR", "DATA", "TIME", "CODE", "VAR", "SAMP", "KDB", "SUB", "SUP", "I", "B", "U", "MARK", "RUBY", "RT", "RP", "BDI", "DBO", "SPAN", "BR", "WBR", "INS", "DEL", "IMG", "IFRAME", "EMBED", "OBJECT", "PARAM", "VIDEO", "AUDIO", "SOURCE", "TRACK", "CANVAS", "MAP", "AREA", "SVG", "MATH", "TABLE", "CAPTION", "COLGROUP", "COL", "TBODY", "THEAD", "TFOOT", "TR", "TD", "TH", "FORM", "FIELDSET", "LEGEND", "LABEL", "INPUT", "BUTTON", "SELECT", "DATALIST", "OPTGROUP", "OPTION", "TEXTAREA", "KEYGEN", "OUTPUT", "PROGRESS", "METER", "DETAILS", "SUMMARY", "COMMAND", "MENU"], NTI76452);
 var toEventName_76455 = nimCopy(null, ["click", "dblclick", "keyup", "keydown", "keypressed", "blur", "change", "scroll", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseout", "mouseover", "mouseup", "drag", "dragend", "dragenter", "dragleave", "dragover", "dragstart", "drop", "keyupenter", "keyuplater"], NTI76458);
+function nimMin(a_45639, b_45640) {
+
+var Tmp1;
+var result_45641 = 0;
+BeforeRet: do {
+if ((a_45639 <= b_45640)) {
+Tmp1 = a_45639;
+}
+else {
+Tmp1 = b_45640;
+}
+
+result_45641 = Tmp1;
+break BeforeRet;
+} while (false); 
+return result_45641;
+}
 function cstrToNimstr(c_41003) {
 
   var ln = c_41003.length;
@@ -211,23 +228,6 @@ function cstrToNimstr(c_41003) {
   result[r] = 0; // terminating zero
   return result;
   }
-function nimMin(a_45639, b_45640) {
-
-var Tmp1;
-var result_45641 = 0;
-BeforeRet: do {
-if ((a_45639 <= b_45640)) {
-Tmp1 = a_45639;
-}
-else {
-Tmp1 = b_45640;
-}
-
-result_45641 = Tmp1;
-break BeforeRet;
-} while (false); 
-return result_45641;
-}
 var nimvm_32687 = false;
 var nim_program_result = 0;
 var globalRaiseHook_37805 = [null];
@@ -874,41 +874,33 @@ var Tmp10;
 var Tmp13;
 var Tmp14;
 var Tmp38;
-if (!((newNode_89750.key == -1))) {
-console.log(toJSStr(cstrToNimstr((newNode_89750.key)+"")));
-}
-
-if (!((oldNode_89751.key == -1))) {
-console.log(toJSStr(cstrToNimstr((oldNode_89751.key)+"")));
-}
-
 newNode_89750.dom = oldNode_89751.dom;
 if (!(equalsShallow_89489(newNode_89750, oldNode_89751))) {
 oldNode_89751.dom = null;
-var n_89765 = vnodeToDom_89120(newNode_89750);
+var n_89753 = vnodeToDom_89120(newNode_89750);
 if ((parent_89748 == null)) {
-replaceById_89484("ROOT", n_89765);
+replaceById_89484("ROOT", n_89753);
 }
 else {
-parent_89748.replaceChild(n_89765, current_89749);
+parent_89748.replaceChild(n_89753, current_89749);
 }
 
 }
 else {
 if (!((newNode_89750.kind == 0))) {
-var newLength_89786 = len_76893(newNode_89750);
-var oldLength_89787 = len_76893(oldNode_89751);
-var minLength_89788 = nimMin(newLength_89786, oldLength_89787);
+var newLength_89774 = len_76893(newNode_89750);
+var oldLength_89775 = len_76893(oldNode_89751);
+var minLength_89776 = nimMin(newLength_89774, oldLength_89775);
 var left_90001 = 0;
 L1: do {
 L2: while (true) {
-if (!((left_90001 < minLength_89788) && equalsShallow_89489(X5BX5D__76904(newNode_89750, left_90001), X5BX5D__76904(oldNode_89751, left_90001)))) break L2;
+if (!((left_90001 < minLength_89776) && equalsShallow_89489(X5BX5D__76904(newNode_89750, left_90001), X5BX5D__76904(oldNode_89751, left_90001)))) break L2;
 updateElement_89746(current_89749, X5BX5D__76904(oldNode_89751, left_90001).dom, X5BX5D__76904(newNode_89750, left_90001), X5BX5D__76904(oldNode_89751, left_90001), (ident_89752 + 1));
 left_90001 += 1;
 }
 } while(false);
-var rightOld_90011 = (oldLength_89787 - 1);
-var rightNew_90012 = (newLength_89786 - 1);
+var rightOld_90011 = (oldLength_89775 - 1);
+var rightNew_90012 = (newLength_89774 - 1);
 L3: do {
 L4: while (true) {
 if (!(left_90001 <= rightOld_90011)) Tmp6 = false; else {Tmp6 = (left_90001 <= rightNew_90012); }if (!Tmp6) Tmp5 = false; else {Tmp5 = equalsShallow_89489(X5BX5D__76904(newNode_89750, rightNew_90012), X5BX5D__76904(oldNode_89751, rightOld_90011)); }if (!Tmp5) break L4;
@@ -923,7 +915,7 @@ L7: do {
 L8: while (true) {
 if (!(leftOld_90031 <= rightOld_90011)) Tmp10 = false; else {Tmp10 = (leftNew_90032 <= rightNew_90012); }if (!Tmp10) Tmp9 = false; else {Tmp9 = equalsShallow_89489(X5BX5D__76904(oldNode_89751, leftOld_90031), X5BX5D__76904(newNode_89750, rightNew_90012)); }if (!Tmp9) break L8;
 var nextNode_90033 = null;
-if (((rightNew_90012 + 1) < newLength_89786)) {
+if (((rightNew_90012 + 1) < newLength_89774)) {
 nextNode_90033 = X5BX5D__76904(newNode_89750, (rightNew_90012 + 1)).dom;
 }
 
@@ -1116,7 +1108,7 @@ leftNew_90032 += 1;
 leftOld_90031 += 1;
 }
 } while(false);
-var isPushBack_90354 = ((rightNew_90012 + 1) == newLength_89786);
+var isPushBack_90354 = ((rightNew_90012 + 1) == newLength_89774);
 var nextNode_90355 = null;
 if (!(isPushBack_90354)) {
 nextNode_90355 = X5BX5D__76904(newNode_89750, (rightNew_90012 + 1)).dom;
