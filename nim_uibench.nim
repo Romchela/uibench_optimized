@@ -100,7 +100,7 @@ proc b(samples: RootRef) =
 proc init*(a: cstring, b: cstring) {.importc: "uibench.init", nodecl.}
 proc run*(a: proc(state: AppState), b: proc(samples: RootRef)) {.importc: "uibench.run", nodecl.}
 
-init(cstring"Nim-karax-new", cstring"0.6.1")
+init(cstring"Nim-karax-inferno", cstring"0.6.1")
 
 setRendererOnly update
 run(a, b)
